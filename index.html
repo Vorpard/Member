@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vorpard</title>
 
-<!-- ✅ FAVICON (รองรับทุกขนาด) -->
+<!-- ✅ FAVICON -->
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
@@ -30,16 +30,13 @@
 body {
   margin: 0;
   font-family: Tahoma, Arial, sans-serif;
-
   background:
     linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
     url("https://img5.pic.in.th/file/secure-sv1/2DDCF93E-4089-4A94-A3D2-E6C8EC23DADB.gif");
-
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-
   color: #fff;
   display: flex;
   justify-content: center;
@@ -71,6 +68,7 @@ body {
   font-weight: 900;
   letter-spacing: 8px;
   margin: 0;
+  color: #ffffff;
 }
 
 .header h2 {
@@ -79,8 +77,17 @@ body {
   font-weight: 600;
   letter-spacing: 4px;
   margin-top: 12px;
-  color: #fff;
-  opacity: 0.85;
+  color: #ffffff;
+}
+
+/* ⭐ Tagline */
+.tagline {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-top: 12px;
+  color: #ffffff;
+  opacity: 0.9;
 }
 
 .search-box {
@@ -97,10 +104,6 @@ body {
   color: #fff;
   outline: none;
   font-size: 14px;
-}
-
-.search-box input::placeholder {
-  color: #777;
 }
 
 .grid {
@@ -127,10 +130,12 @@ body {
   box-shadow: 0 0 25px rgba(255,255,255,0.15), inset 0 0 20px rgba(255,255,255,0.05);
 }
 
+/* ⭐ ตัวเลขเล็กลงสวยขึ้น */
 .number {
   font-weight: bold;
   min-width: 30px;
   opacity: 0.7;
+  font-size: 10px; /* ← เล็กลงตามที่สั่ง */
 }
 
 .name {
@@ -153,6 +158,9 @@ body {
     <img src="https://img2.pic.in.th/pic/D1C7BBDF-2FBA-4618-96E3-7ADAB20CCDBD.png">
     <h1>VORPARD</h1>
     <h2>WE ARE STARDENG</h2>
+
+    <!-- ⭐ Tagline -->
+    <p class="tagline">FIVE YEARS STRONG. UNITED, UNBROKEN, UNSTOPPABLE.</p>
   </div>
 
   <div class="search-box">
@@ -200,7 +208,7 @@ const members = [
   "Nongploy khonsuay",
   "Try Vorpard",
   "Kaiser Vorpard",
-  "Shinshi Vorpard"
+  "Heiji Vorpard"
 ];
 
 const grid = document.getElementById("memberGrid");
