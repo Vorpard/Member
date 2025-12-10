@@ -21,11 +21,9 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
-<!-- tsParticles -->
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.1/tsparticles.bundle.min.js"></script>
 
 <style>
-/* Body + Background GIF */
 body {
   margin: 0;
   font-family: Tahoma, Arial, sans-serif;
@@ -44,7 +42,6 @@ body {
   z-index: 1;
 }
 
-/* tsParticles container */
 #tsparticles {
   position: fixed;
   width: 100%;
@@ -54,7 +51,6 @@ body {
   z-index: 0;
 }
 
-/* Main container */
 .container {
   position: relative; 
   width: 100%;
@@ -73,16 +69,15 @@ body {
 }
 
 .header img {
-  width: 650px; /* โลโก้ใหญ่ขึ้น */
+  width: 650px;
   margin-bottom: 20px;
   transition: transform 0.5s ease, filter 0.5s ease, box-shadow 0.5s ease;
   transform-style: preserve-3d;
 }
 
-/* จัดข้อความ h1/h2/tagline แบบอิสระ */
 .header h1 {
   position: absolute;
-  top: 310px;   /* ปรับเองได้ */
+  top: 310px;
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Orbitron', sans-serif;
@@ -92,7 +87,7 @@ body {
 
 .header h2 {
   position: absolute;
-  top: 360px;  /* ปรับเอง */
+  top: 360px;
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Orbitron', sans-serif;
@@ -102,72 +97,82 @@ body {
 
 .tagline {
   position: absolute;
-  top: 430px; /* ปรับเอง */
+  top: 430px;
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Orbitron', sans-serif;
   font-size: 17px;
   letter-spacing: 2px;
-
-  width: 90%;       /* ข้อความยาว ๆ แบ่งบรรทัดได้ */
-  max-width: 700px; /* กำหนดความกว้างสูงสุด */
+  width: 90%;
+  max-width: 700px;
   text-align: center;
-  white-space: normal; /* ข้อความยาว ๆ ลงบรรทัดใหม่ */
+  white-space: normal;
   word-wrap: break-word;
   opacity: 0.9;
 }
 
-/* ⭐ CONTACT ICONS — แนวตั้ง */
+/* CONTACT ICONS */
 .contact-links {
   position: fixed;
   top: 20px;
   right: 20px;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   gap: 12px;
   z-index: 999;
 }
 
 .icon {
-  width: 45px;
-  height: 45px;
-  background: linear-gradient(145deg, #1a1a1a, #000);
-  border-radius: 50%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  overflow: hidden;
+  gap: 6px;
+  padding: 6px 12px;
+  background: linear-gradient(145deg, #1a1a1a, #000);
+  border-radius: 26px;
   box-shadow:
     3px 3px 8px rgba(0,0,0,0.8),
     -3px -3px 8px rgba(60,60,60,0.15),
     inset 1.5px 1.5px 3px rgba(255,255,255,0.06),
     inset -1.5px -1.5px 3px rgba(0,0,0,0.6);
-  transition: 0.3s ease-in-out;
   cursor: pointer;
   transform-style: preserve-3d;
   animation: floatEffect 2s ease-in-out infinite;
+  text-decoration: none;
 }
 
 .icon img {
-  width: 100%;
-  height: 100%;
+  width: 45px;
+  height: 45px;
   object-fit: cover;
   border-radius: 50%;
   transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
 }
 
-.icon:hover {
-  transform: translateY(-6px) scale(1.15) rotateX(5deg) rotateY(5deg);
-  box-shadow:
-    6px 6px 16px rgba(0,0,0,1),
-    -4px -4px 12px rgba(80,80,80,0.2),
-    inset 2px 2px 6px rgba(255,255,255,0.15),
-    inset -2px -2px 6px rgba(0,0,0,0.7);
+/* Neon Gradient Text */
+.icon-text {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 12px;
+  background: linear-gradient(90deg, #ff0055, #ffdd00, #00ffdd, #5500ff);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s linear infinite;
+  white-space: nowrap;
+  transition: all 0.3s ease-in-out;
 }
 
-.icon:hover img {
-  transform: scale(1.05) rotate(-5deg);
-  filter: brightness(1.2) drop-shadow(0 0 6px #fff);
+.icon:hover .icon-text {
+  transform: scale(1.2);
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @keyframes floatEffect {
@@ -176,7 +181,6 @@ body {
   100% { transform: translateY(0px); }
 }
 
-/* Search Box */
 .search-box {
   width: 100%;
   margin-bottom: 25px;
@@ -193,14 +197,12 @@ body {
   font-size: 14px;
 }
 
-/* Grid */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
   gap: 18px;
 }
 
-/* Card */
 .card {
   background: #151515;
   border: 2px solid rgba(255,255,255,0.05);
@@ -225,7 +227,6 @@ body {
   min-width: 30px;
   opacity: 0.8;
   font-size: 10px;
-  transition: color 0.3s ease;
   color: #fff;
 }
 
@@ -243,7 +244,6 @@ body {
 </head>
 <body>
 
-<!-- ⭐ tsParticles Background -->
 <div id="tsparticles"></div>
 
 <div class="container">
@@ -254,16 +254,18 @@ body {
     <p class="tagline">FIVE YEARS STRONG. UNITED, UNBROKEN, UNSTOPPABLE.</p>
   </div>
 
-  <!-- ⭐ CONTACT ICONS — แนวตั้ง -->
   <div class="contact-links">
     <a href="https://www.facebook.com/profile.php?id=100078028312254" class="icon" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+      <span class="icon-text">VORPARD</span>
     </a>
     <a href="#" class="icon" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram">
+      <span class="icon-text">VORPARD</span>
     </a>
     <a href="https://lin.ee/oQFisBo" class="icon" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/124/124027.png" alt="LINE">
+      <span class="icon-text">STARDENG</span>
     </a>
   </div>
 
@@ -345,7 +347,6 @@ document.getElementById("search").addEventListener("input", function(){
   render(filtered);
 });
 
-/* tsParticles Init */
 tsParticles.load("tsparticles", {
   particles: {
     number: { value: 50, density: { enable: true, value_area: 800 } },
