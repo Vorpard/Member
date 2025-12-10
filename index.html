@@ -122,6 +122,11 @@ body {
   z-index: 999;
 }
 
+.icon-wrapper {
+  display: inline-block;
+  animation: floatEffect 2s ease-in-out infinite;
+}
+
 .icon {
   display: flex;
   align-items: center;
@@ -136,8 +141,8 @@ body {
     inset -1.5px -1.5px 3px rgba(0,0,0,0.6);
   cursor: pointer;
   transform-style: preserve-3d;
-  animation: floatEffect 2s ease-in-out infinite;
   text-decoration: none;
+  transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
 
 .icon img {
@@ -145,7 +150,7 @@ body {
   height: 45px;
   object-fit: cover;
   border-radius: 50%;
-  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 /* Neon Gradient Text */
@@ -164,21 +169,27 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+/* Hover effect ขยายไอคอน + ชื่อ */
+.icon:hover {
+  transform: scale(1.15);
+}
+
 .icon:hover .icon-text {
   transform: scale(1.2);
   text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+}
+
+/* Float animation สำหรับทั้ง icon-wrapper */
+@keyframes floatEffect {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
 }
 
 @keyframes gradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
-}
-
-@keyframes floatEffect {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-2px); }
-  100% { transform: translateY(0px); }
 }
 
 .search-box {
@@ -255,18 +266,24 @@ body {
   </div>
 
   <div class="contact-links">
-    <a href="https://www.facebook.com/profile.php?id=100078028312254" class="icon" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
-      <span class="icon-text">VORPARD</span>
-    </a>
-    <a href="#" class="icon" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram">
-      <span class="icon-text">VORPARD</span>
-    </a>
-    <a href="https://lin.ee/oQFisBo" class="icon" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/124/124027.png" alt="LINE">
-      <span class="icon-text">STARDENG</span>
-    </a>
+    <div class="icon-wrapper">
+      <a href="https://www.facebook.com/profile.php?id=100078028312254" class="icon" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+        <span class="icon-text">VORPARD</span>
+      </a>
+    </div>
+    <div class="icon-wrapper">
+      <a href="#" class="icon" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram">
+        <span class="icon-text">VORPARD</span>
+      </a>
+    </div>
+    <div class="icon-wrapper">
+      <a href="https://lin.ee/oQFisBo" class="icon" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/124/124027.png" alt="LINE">
+        <span class="icon-text">STARDENG</span>
+      </a>
+    </div>
   </div>
 
   <div class="search-box">
