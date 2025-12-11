@@ -247,20 +247,27 @@ body {
   margin-left: 6px;
 }
 
-/* ⭐ ปรับฟ้อนต์มือถือ (แก้ให้ VORPARD เล็กลง) */
+/* ⭐ ปรับฟ้อนต์มือถือ ให้เล็กลงจริง */
 @media (max-width: 480px) {
 
+  .header img {
+    max-width: 300px;
+  }
+
   .header h1 {
-    font-size: 26px;   /* ← บีอยากให้เล็กลง พี่ปรับให้แล้ว */
+    font-size: 20px;
+    margin-top: -40px;
   }
 
   .header h2 {
-    font-size: 20px;
+    font-size: 14px;
+    margin-top: 2px;
   }
 
   .header .tagline {
-    font-size: 14px;
+    font-size: 11px;
     letter-spacing: 1px;
+    margin-top: 4px;
   }
 }
 
