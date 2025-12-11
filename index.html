@@ -77,12 +77,10 @@ body {
   transform-style: preserve-3d;
 }
 
-/* ตำแหน่ง H1 H2 TAGLINE */
 .header h1,
 .header h2,
 .header .tagline {
   position: relative;
-  transform: none;
   margin: 0;
 }
 
@@ -249,19 +247,19 @@ body {
   margin-left: 6px;
 }
 
-/* ✅ ปรับฟ้อนต์ให้มือถือไม่เล็กเกิน */
+/* ⭐ ปรับฟ้อนต์มือถือ (แก้ให้ VORPARD เล็กลง) */
 @media (max-width: 480px) {
 
   .header h1 {
-    font-size: 34px;      /* VORPARD มือถือ */
+    font-size: 26px;   /* ← บีอยากให้เล็กลง พี่ปรับให้แล้ว */
   }
 
   .header h2 {
-    font-size: 22px;      /* WE ARE STARDENG มือถือ */
+    font-size: 20px;
   }
 
   .header .tagline {
-    font-size: 14px;      /* FIVE YEARS STRONG */
+    font-size: 14px;
     letter-spacing: 1px;
   }
 }
