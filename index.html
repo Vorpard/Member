@@ -69,7 +69,6 @@ body {
   position: relative;
 }
 
-/* โลโก้ขยับได้ */
 .header img {
   width: 100%;
   max-width: 450px;
@@ -91,7 +90,6 @@ body {
   margin: 0;
 }
 
-/* LOGO TEXT */
 .header h1 {
   font-family: 'Orbitron', sans-serif;
   font-size: clamp(20px, 4vw, 38px);
@@ -117,7 +115,6 @@ body {
   line-height: 1.2;
 }
 
-/* CONTACT ICONS */
 .contact-links {
   position: fixed;
   top: 20px;
@@ -285,9 +282,23 @@ body {
     font-size: 11px;
     letter-spacing: 1px;
   }
-}
 
+  /* ปรับขนาด icon และข้อความ ไม่ให้บังโลโก้ */
+  .contact-links .icon {
+    padding: 4px 8px;
+  }
+
+  .contact-links .icon img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .contact-links .icon-text {
+    font-size: 10px;
+  }
+}
 </style>
+
 </head>
 <body>
 
