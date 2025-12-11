@@ -40,6 +40,7 @@ body {
   padding: 40px 10px;
   position: relative;
   z-index: 1;
+  min-height: 100vh;
 }
 
 #tsparticles {
@@ -247,27 +248,38 @@ body {
   margin-left: 6px;
 }
 
-/* ⭐ ปรับฟ้อนต์มือถือ ให้เล็กลงจริง */
+/* ⭐ FIX — มือถือไม่ดันฟ้อนต์ลงอีก */
 @media (max-width: 480px) {
 
+  body {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .container {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+
   .header img {
+    margin-bottom: 10px;
     max-width: 300px;
   }
 
   .header h1 {
+    margin-top: -55px;
     font-size: 20px;
-    margin-top: -40px;
   }
 
   .header h2 {
     font-size: 14px;
-    margin-top: 2px;
   }
 
   .header .tagline {
     font-size: 11px;
     letter-spacing: 1px;
-    margin-top: 4px;
   }
 }
 
