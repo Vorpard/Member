@@ -166,7 +166,6 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-/* ICON HOVER */
 .icon:hover {
   transform: scale(1.15);
 }
@@ -248,22 +247,30 @@ body {
   margin-left: 6px;
 }
 
-/* ⭐ MOBILE FIX */
+/* MOBILE FIX */
 @media (max-width: 480px) {
-  .header h1 { font-size: 26px; }
-  .header h2 { font-size: 20px; }
-  .header .tagline { font-size: 14px; letter-spacing: 1px; }
+  .header h1 {
+    font-size: 26px;
+  }
 
-  /* ICONS MOBILE - เล็กลงและเลื่อนตาม content */
+  .header h2 {
+    font-size: 20px;
+  }
+
+  .header .tagline {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  /* ไอคอนมือถือ ขนาดเล็ก ขวาบน ลอยตาม scroll */
   .contact-links {
-    position: relative; /* ไม่ fixed */
-    top: auto;
-    right: auto;
-    margin-bottom: 15px;
-    gap: 8px;
-    z-index: 50;
+    position: fixed;
+    top: 10px;
+    right: 10px;
     display: flex;
-    justify-content: flex-end; /* อยู่ด้านขวา */
+    flex-direction: column;
+    gap: 6px;
+    z-index: 999;
   }
 
   .icon img {
@@ -273,10 +280,11 @@ body {
 
   .icon {
     padding: 2px 6px;
-    transform: scale(0.85);
   }
 
-  .icon-text { font-size: 9px; }
+  .icon-text {
+    font-size: 9px;
+  }
 }
 </style>
 </head>
@@ -324,12 +332,41 @@ body {
 const members = [
   { name: "King Vorpard", role: "LEADER" },
   { name: "Xan Vorpard", role: "LEADER" },
-  "Jaylyn Vorpard","Tyler Vorpard","Delta Vorpard","Sayhigh Vorpard","Sunfo Vorpard","BoonRod Vorpard",
-  "Hopper Vorpard","Chanom Vorpard","Edward Vorpard","Jtwo Various","Jinny Ren","Garious","Arthur Vert",
-  "Twin Vert","Wan Senternal","Cxtes Kennethsy","Txrbo Ren","Skrt","Atom False","Jay Chalet","Jxydenx",
-  "Cooper Sloth","Comet Din Halley","Hannibal Divinity","Whitex Ren","Makure Myths","Hobbs Vorpard",
-  "Lays Vorpard","Joke Vorpard","Scott Vorpard","Sewie McCarthy","Nongploy khonsuay","Try Vorpard",
-  "Kaiser Vorpard","Heiji Vorpard"
+  "Jaylyn Vorpard",
+  "Tyler Vorpard",
+  "Delta Vorpard",
+  "Sayhigh Vorpard",
+  "Sunfo Vorpard",
+  "BoonRod Vorpard",
+  "Hopper Vorpard",
+  "Chanom Vorpard",
+  "Edward Vorpard",
+  "Jtwo Various",
+  "Jinny Ren",
+  "Garious",
+  "Arthur Vert",
+  "Twin Vert",
+  "Wan Senternal",
+  "Cxtes Kennethsy",
+  "Txrbo Ren",
+  "Skrt",
+  "Atom False",
+  "Jay Chalet",
+  "Jxydenx",
+  "Cooper Sloth",
+  "Comet Din Halley",
+  "Hannibal Divinity",
+  "Whitex Ren",
+  "Makure Myths",
+  "Hobbs Vorpard",
+  "Lays Vorpard",
+  "Joke Vorpard",
+  "Scott Vorpard",
+  "Sewie McCarthy",
+  "Nongploy khonsuay",
+  "Try Vorpard",
+  "Kaiser Vorpard",
+  "Heiji Vorpard"
 ];
 
 const grid = document.getElementById("memberGrid");
@@ -339,6 +376,7 @@ function render(list){
   list.forEach((member, index) => {
     let name = typeof member === 'string' ? member : member.name;
     let role = typeof member === 'object' && member.role ? member.role : '';
+
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
@@ -368,10 +406,21 @@ tsParticles.load("tsparticles", {
     shape: { type: "circle" },
     opacity: { value: 0.7, random: true },
     size: { value: 2, random: true },
-    move: { enable: true, speed: 1.2, direction: "none", random: true, straight: false, out_mode: "out", bounce: false },
+    move: {
+      enable: true,
+      speed: 1.2,
+      direction: "none",
+      random: true,
+      straight: false,
+      out_mode: "out",
+      bounce: false
+    },
     line_linked: { enable: false }
   },
-  interactivity: { detect_on: "canvas", events: { onhover: { enable: false }, onclick: { enable: false } } },
+  interactivity: {
+    detect_on: "canvas",
+    events: { onhover: { enable: false }, onclick: { enable: false } }
+  },
   retina_detect: true
 });
 </script>
