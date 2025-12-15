@@ -542,7 +542,7 @@ const chatInput=document.getElementById("chat-input");
 const chatMessages=document.getElementById("chat-messages");
 const chatDot=document.querySelector(".chat-dot");
 
-// โหลดเสียงป๊อบ (เล่นตอนผู้ใช้โต้ตอบ)
+// โหลดเสียงป๊อบ
 const chatSound=new Audio("https://www.soundjay.com/button/sounds/button-16.mp3");
 chatSound.volume=0.5;
 chatSound.preload="auto";
@@ -557,6 +557,7 @@ chatBtn.onclick=()=>{
   chatBox.style.display=(chatBox.style.display==="flex"?"none":"flex");
   chatDot.style.display="none";
   newMsgFlag=false;
+  // เล่นเสียงตอนเปิดแชท
   chatSound.currentTime=0;
   chatSound.play().catch(e=>{});
 };
@@ -580,7 +581,7 @@ function sendMessage(){
   chatMessages.scrollTop=chatMessages.scrollHeight;
   chatInput.value="";
 
-  // เล่นเสียงทันที
+  // เล่นเสียงตอนผู้ใช้ส่ง
   chatSound.currentTime=0;
   chatSound.play().catch(e=>{});
 
