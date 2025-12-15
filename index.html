@@ -436,6 +436,177 @@ tsParticles.load("tsparticles", {
   retina_detect: true
 });
 </script>
+<!-- ===== ปุ่มแชท ===== -->
+<div id="chat-button" class="chat-animated">
+  💬
+  <span class="chat-dot"></span>
+</div>
+
+<!-- ===== กล่องแชท ===== -->
+<div id="chat-box">
+  <div id="chat-header">
+    VORPARD SUPPORT.
+    <span id="chat-close">×</span>
+  </div>
+  <div id="chat-messages">
+    <div class="admin-msg">
+      <img src="https://img2.pic.in.th/pic/D1C7BBDF-2FBA-4618-96E3-7ADAB20CCDBDc7b17a6bb58d0616.png" class="admin-logo" alt="Admin">
+      <div class="msg-text">
+        สวัสดีครับ!🙏 พร้อมยินดีรับใช้ครับ! หากพบเจอปัญหาคนในทีมทำการละเมิดกฎทำให้ผู้อื่นเดือดร้อนหรือพบเจอคนใส่สูทมั่วทำให้ทีมเสียหาย สามารถแจ้งในแชทนี้ได้ทันที! เราจะตอบกลับภายใน 24 ชม. 
+      </div>
+    </div>
+  </div>
+  <div id="chat-input-area">
+    <input type="text" id="chat-input" placeholder="พิมพ์ข้อความ..." />
+    <button id="chat-send">ส่ง</button>
+  </div>
+</div>
+
+<style>
+/* ===== ปุ่มแชท ===== */
+#chat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(145deg, #fff, #eee);
+  border-radius: 50%;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,.3), inset -2px -2px 5px rgba(255,255,255,0.5);
+  z-index: 9999;
+  transition: transform 0.3s ease;
+}
+#chat-button:hover {
+  transform: scale(1.15) rotate(-5deg);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset -2px -2px 5px rgba(255,255,255,0.6);
+}
+.chat-dot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 12px;
+  height: 12px;
+  background: #ff3c3c;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #ff3c3c, 0 0 12px #ff3c3c;
+  animation: ping 1.5s infinite;
+}
+@keyframes ping { 0%{transform:scale(0.8);opacity:0.8;}50%{transform:scale(1.2);opacity:0.4;}100%{transform:scale(0.8);opacity:0.8;} }
+
+/* ===== กล่องแชท ===== */
+#chat-box {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  background: #1a1a1a;
+  color: #f5f5f5;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.35);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+  font-family: system-ui, sans-serif;
+}
+#chat-header { background:#d32f2f;color:#fff;padding:12px 14px;font-weight:bold;font-size:15px; }
+#chat-close { float:right; cursor:pointer; }
+#chat-messages { padding:12px;height:200px;overflow-y:auto;background:#222; }
+.admin-msg, .user-msg { margin-bottom:10px; display:flex; align-items:flex-start; animation: slideFade 0.3s ease; }
+.admin-logo { width:34px; height:34px; border-radius:50%; margin-right:8px; object-fit:cover; }
+.admin-msg .msg-text { background:#333;color:#f5f5f5;padding:10px 14px;border-radius:16px;font-size:14px;max-width:220px; }
+.user-msg { background:#d32f2f;color:#fff;padding:10px 14px;border-radius:16px;font-size:14px;max-width:220px;margin-left:auto; }
+#chat-input-area { display:flex; padding:10px; border-top:1px solid #555; background:#1a1a1a; }
+#chat-input { flex:1;padding:8px;border-radius:10px;border:1px solid #555;font-size:14px;background:#2a2a2a;color:#f5f5f5; }
+#chat-send { margin-left:6px;padding:8px 14px;border:none;background:#d32f2f;color:#fff;border-radius:10px;cursor:pointer;font-size:14px; }
+
+@keyframes slideFade {0%{transform:translateY(10px);opacity:0;}100%{transform:translateY(0);opacity:1;}}
+/* มือถือ */
+@media (max-width:480px){#chat-box{width:100%;right:0;bottom:80px;border-radius:16px 16px 0 0;}}
+/* ===== ปุ่มเด้งเวลามีข้อความใหม่ ===== */
+@keyframes bounceButton{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+</style>
+
+<script>
+const chatBtn=document.getElementById("chat-button");
+const chatBox=document.getElementById("chat-box");
+const chatClose=document.getElementById("chat-close");
+const chatSend=document.getElementById("chat-send");
+const chatInput=document.getElementById("chat-input");
+const chatMessages=document.getElementById("chat-messages");
+const chatDot=document.querySelector(".chat-dot");
+
+// โหลดเสียงป๊อบ
+const chatSound=new Audio("https://actions.google.com/sounds/v1/alarms/pop.ogg");
+chatSound.volume=0.5;
+chatSound.preload="auto";
+
+// แก้ปุ่มเด้ง
+let newMsgFlag=false;
+function bounceButton(){ chatBtn.style.animation="bounceButton 0.6s ease"; setTimeout(()=>chatBtn.style.animation="",600);}
+setInterval(()=>{ if(newMsgFlag){ bounceButton(); }}, 1500);
+
+// เปิดกล่อง
+chatBtn.onclick=()=>{
+  chatBox.style.display=(chatBox.style.display==="flex"?"none":"flex");
+  chatDot.style.display="none";
+  newMsgFlag=false;
+  chatSound.play().catch(e=>{});
+};
+
+// ปิดกล่อง
+chatClose.onclick=()=>{ chatBox.style.display="none"; };
+
+// ส่งข้อความ
+chatSend.onclick=sendMessage;
+chatInput.addEventListener("keypress",e=>{ if(e.key==="Enter") sendMessage(); });
+
+function sendMessage(){
+  const msg=chatInput.value.trim();
+  if(!msg) return;
+
+  // ข้อความผู้ใช้
+  const userDiv=document.createElement("div");
+  userDiv.className="user-msg";
+  userDiv.textContent=msg;
+  chatMessages.appendChild(userDiv);
+  chatMessages.scrollTop=chatMessages.scrollHeight;
+  chatInput.value="";
+
+  // แอดมินตอบแบบพิมพ์ช้า
+  const adminReplies=[
+    "รับทราบครับ! 🙏",
+    "ทีมจะติดต่อกลับเร็วที่สุดครับ",
+    "กำลังตรวจสอบข้อมูลให้ครับ..."
+  ];
+  const reply=adminReplies[Math.floor(Math.random()*adminReplies.length)];
+
+  // ใส่ ... กำลังพิมพ์
+  const typingDiv=document.createElement("div");
+  typingDiv.className="admin-msg";
+  typingDiv.innerHTML=`
+    <img src="https://img2.pic.in.th/pic/D1C7BBDF-2FBA-4618-96E3-7ADAB20CCDBDc7b17a6bb58d0616.png" class="admin-logo" alt="Admin">
+    <div class="msg-text">...</div>
+  `;
+  chatMessages.appendChild(typingDiv);
+  chatMessages.scrollTop=chatMessages.scrollHeight;
+
+  setTimeout(()=>{
+    typingDiv.querySelector(".msg-text").textContent=reply;
+    chatSound.currentTime=0;
+    chatSound.play().catch(e=>{});
+    chatMessages.scrollTop=chatMessages.scrollHeight;
+    if(chatBox.style.display==="none"){ chatDot.style.display="block"; newMsgFlag=true; }
+  }, 1000 + Math.random()*1000);
+}
+</script>
+
 
 </body>
 </html>
