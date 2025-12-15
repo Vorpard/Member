@@ -437,7 +437,7 @@ tsParticles.load("tsparticles", {
 });
 </script>
 <!-- ===== ปุ่มแชท ===== -->
-<div id="chat-button" class="chat-animated">
+<div id="chat-button">
   💬
   <span class="chat-dot"></span>
 </div>
@@ -450,7 +450,7 @@ tsParticles.load("tsparticles", {
   </div>
   <div id="chat-messages">
     <div class="admin-msg">
-      <img src="https://img2.pic.in.th/pic/D1C7BBDF-2FBA-4618-96E3-7ADAB20CCDBDc7b17a6bb58d0616.png" class="admin-logo" alt="Admin">
+      <img src="https://img2.pic.in.th/pic/D1C7BBDF-2FBA-4618-96E3-7ADAB20CCDBDc7b17a6bb58d0616.png" class="admin-logo">
       <div class="msg-text">
         สวัสดีครับ!🙏 พร้อมยินดีรับใช้ครับ! หากพบเจอปัญหาคนในทีมทำการละเมิดกฎทำให้ผู้อื่นเดือดร้อนหรือพบเจอคนใส่สูทมั่วทำให้ทีมเสียหาย สามารถแจ้งในแชทนี้ได้ทันที! เราจะตอบกลับภายใน 24 ชม. 
       </div>
@@ -530,7 +530,7 @@ tsParticles.load("tsparticles", {
 /* มือถือ */
 @media (max-width:480px){#chat-box{width:100%;right:0;bottom:80px;border-radius:16px 16px 0 0;}}
 /* ===== ปุ่มเด้งเวลามีข้อความใหม่ ===== */
-@keyframes bounceButton{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+@keyframes bounceButton{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);} }
 </style>
 
 <script>
@@ -542,12 +542,12 @@ const chatInput=document.getElementById("chat-input");
 const chatMessages=document.getElementById("chat-messages");
 const chatDot=document.querySelector(".chat-dot");
 
-// โหลดเสียงป๊อบ
-const chatSound=new Audio("https://actions.google.com/sounds/v1/alarms/pop.ogg");
+// โหลดเสียงป๊อบ (เล่นตอนผู้ใช้โต้ตอบ)
+const chatSound=new Audio("https://www.soundjay.com/button/sounds/button-16.mp3");
 chatSound.volume=0.5;
 chatSound.preload="auto";
 
-// แก้ปุ่มเด้ง
+// ปุ่มเด้ง
 let newMsgFlag=false;
 function bounceButton(){ chatBtn.style.animation="bounceButton 0.6s ease"; setTimeout(()=>chatBtn.style.animation="",600);}
 setInterval(()=>{ if(newMsgFlag){ bounceButton(); }}, 1500);
@@ -557,6 +557,7 @@ chatBtn.onclick=()=>{
   chatBox.style.display=(chatBox.style.display==="flex"?"none":"flex");
   chatDot.style.display="none";
   newMsgFlag=false;
+  chatSound.currentTime=0;
   chatSound.play().catch(e=>{});
 };
 
@@ -579,6 +580,10 @@ function sendMessage(){
   chatMessages.scrollTop=chatMessages.scrollHeight;
   chatInput.value="";
 
+  // เล่นเสียงทันที
+  chatSound.currentTime=0;
+  chatSound.play().catch(e=>{});
+
   // แอดมินตอบแบบพิมพ์ช้า
   const adminReplies=[
     "รับทราบครับ! 🙏",
@@ -590,10 +595,7 @@ function sendMessage(){
   // ใส่ ... กำลังพิมพ์
   const typingDiv=document.createElement("div");
   typingDiv.className="admin-msg";
-  typingDiv.innerHTML=`
-    <img src="https://img2.pic.in.th/pic/D1C7BBDF-2FBA-4618-96E3-7ADAB20CCDBDc7b17a6bb58d0616.png" class="admin-logo" alt="Admin">
-    <div class="msg-text">...</div>
-  `;
+  typingDiv.innerHTML=`<img src="https://img2.pic.in.th/pic/D1C7BBDF-2FBA-4618-96E3-7ADAB20CCDBDc7b17a6bb58d0616.png" class="admin-logo"><div class="msg-text">...</div>`;
   chatMessages.appendChild(typingDiv);
   chatMessages.scrollTop=chatMessages.scrollHeight;
 
@@ -606,6 +608,8 @@ function sendMessage(){
   }, 1000 + Math.random()*1000);
 }
 </script>
+
+
 
 
 </body>
