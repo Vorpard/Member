@@ -193,19 +193,23 @@ body {
 
 .search-box {
   width: 100%;
-  margin-bottom: 25px;
+  max-width: 100%; /* ทำให้ไม่เกิน container */
+  margin-bottom: 25px; /* ระยะห่างจาก Grid */
+  box-sizing: border-box; /* รวม padding เข้า width */
 }
 
 .search-box input {
   width: 100%;
-  padding: 14px 18px;
+  padding: 12px 18px; /* ลด padding ให้พอดี */
   border-radius: 18px;
   background: #111;
   border: 1px solid #222;
   color: #fff;
   outline: none;
   font-size: 14px;
+  box-sizing: border-box; /* รวม padding เข้า width */
 }
+
 
 .grid {
   display: grid;
